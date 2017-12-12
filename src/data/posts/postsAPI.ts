@@ -1,4 +1,4 @@
-import API from 'services/api/api';
+import API from 'services/API';
 import { AxiosPromise } from 'axios';
 
 interface IRoutes {
