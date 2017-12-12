@@ -11,8 +11,6 @@ export interface IRootState {
   posts: IPostsState;
 }
 
-console.log(sagas);
-
 const actionTypeEnumToString = (action: any): any => typeof action.type === 'number' && ActionType[action.type] ? ({
   type: ActionType[action.type],
   payload: action.payload,
