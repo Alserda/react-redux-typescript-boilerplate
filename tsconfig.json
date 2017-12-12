@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "moduleResolution": "node",
+        "baseUrl": "src",
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "outDir": "dist/",
+        "jsx": "react",
+
+        "allowJs": true,
+        "declaration": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "types": [ "node" ],
+        "lib": ["es6", "dom"]
+    },
+    "include": [
+        "declarations/*",
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
