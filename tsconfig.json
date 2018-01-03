@@ -20,7 +20,7 @@
         "lib": ["es6", "dom"]
     },
     "include": [
-        "declarations/*",
+        "typings/*",
         "src/**/*"
     ],
     "exclude": [
