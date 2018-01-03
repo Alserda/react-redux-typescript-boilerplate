@@ -4,11 +4,11 @@ const { join, resolve } = require('path');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const paths = {
   source: resolve(__dirname, '../src'),
   build: resolve(__dirname, '../dist'),
+  publicPath: '/',
 };
 
 module.exports = new Config().merge({
@@ -23,6 +23,7 @@ module.exports = new Config().merge({
   output: {
     filename: 'bundle.[hash].js',
     path: paths.build,
+    publicPath: paths.publicPath,
   },
 
   module: {
@@ -30,6 +31,7 @@ module.exports = new Config().merge({
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/,
@@ -66,9 +68,5 @@ module.exports = new Config().merge({
       title: 'TS Boilerplate',
       template: resolve(__dirname, '../public/index.html'),
     }),
-
-    new TsconfigPathsPlugin({
-      configFile: resolve(__dirname, '../tsconfig.json'),
-    })
   ],
 });

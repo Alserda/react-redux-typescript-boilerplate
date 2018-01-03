@@ -8,28 +8,19 @@ const paths = {
   publicPath: '/',
 };
 
+module.exports = new Config().extend({
+  './webpack/webpack.config.base.js': function(config) {
+    delete config.entry;
+    config.module.rules.shift();
+    return config;
+  }
+}).merge({
+  devtool: 'cheap-module-eval-source-map',
 
-module.exports = new Config().extend('webpack/webpack.config.base.js').merge({
   entry: [
     'react-hot-loader/patch',
     'index.tsx'
   ],
-
-  output: {
-    // necessary for HMR to know where to load the hot update chunks
-    publicPath: paths.publicPath,
-  },
-
-  devtool: 'inline-source-map',
-
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: ['react-hot-loader/webpack', 'ts-loader'],
-      },
-    ]
-  },
 
   devServer: {
     hot: true,
@@ -46,6 +37,15 @@ module.exports = new Config().extend('webpack/webpack.config.base.js').merge({
 
     // fallback to root for other urls
     historyApiFallback: true
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: ['react-hot-loader/webpack', 'ts-loader'],
+      },
+    ]
   },
 
   plugins: [

@@ -6,6 +6,7 @@
         "baseUrl": "src",
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": true,
+        "strict": false,
         "sourceMap": true,
         "outDir": "dist/",
         "jsx": "react",
