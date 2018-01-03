@@ -10,8 +10,12 @@ const paths = {
 
 module.exports = new Config().extend({
   './webpack/webpack.config.base.js': function(config) {
+    // remove the entry to update the entry with hot-loader here
     delete config.entry;
+
+    // remove the rule for TS to include the react-hot-loader here
     config.module.rules.shift();
+
     return config;
   }
 }).merge({
@@ -23,17 +27,17 @@ module.exports = new Config().extend({
   ],
 
   devServer: {
-    hot: true,
     // enable HMR on the server
+    hot: true,
 
     host: 'localhost',
     port: 9000,
 
-    contentBase: paths.build,
     // match the output path
+    contentBase: paths.build,
 
-    publicPath: paths.publicPath,
     // match the output `publicPath`
+    publicPath: paths.publicPath,
 
     // fallback to root for other urls
     historyApiFallback: true
