@@ -35,18 +35,19 @@ module.exports = new Config().merge({
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader'],
+        }),
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
         use: [
           'style-loader',
           'css-loader?sourceMap',
-        ]
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -68,5 +69,11 @@ module.exports = new Config().merge({
       title: 'TS Boilerplate',
       template: resolve(__dirname, '../public/index.html'),
     }),
+
+    // Extracts the CSS from the JS bundle
+    new ExtractTextPlugin({
+      filename: 'boilerplate.[contenthash].css',
+      allChunks: true,
+    })
   ],
 });
