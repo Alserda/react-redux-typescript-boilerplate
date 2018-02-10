@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const { Config } = require('webpack-config');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
 module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   devtool: 'source-map',
 
