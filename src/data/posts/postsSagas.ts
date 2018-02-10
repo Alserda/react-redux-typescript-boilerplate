@@ -9,7 +9,7 @@ export function* fetchPosts(action: IPureAction<ActionType.FETCH_POSTS_REQUESTED
   try {
     const response: AxiosResponse = yield call(PostsAPI.fetch);
 
-    yield put(postsActions.fetchPostsSuccess(response.data.data));
+    yield put(postsActions.fetchPostsSuccess(response.data));
   } catch (e) {
     console.log('Error while fetching posts: ', e);
   }

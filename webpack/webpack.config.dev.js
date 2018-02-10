@@ -9,7 +9,9 @@ const paths = {
 };
 
 module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
-  devtool: 'cheap-module-eval-source-map',
+  // Recommended by React, so there won't be 'cross origin errors'
+  // See https://reactjs.org/docs/cross-origin-errors.html#source-maps
+  devtool: 'cheap-module-source-map',
 
   entry: [
     'react-hot-loader/patch',

@@ -1,7 +1,6 @@
 export interface IPost {
-  color: string;
   id: number;
-  name: string;
-  pantone_value: string;
-  year: number;
+  userId: number;
+  title: string;
+  body: string;
 }

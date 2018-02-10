@@ -26,8 +26,8 @@ class Dashboard extends React.Component<IProps> {
 
   private renderPosts(): JSX.Element[] {
     return this.props.posts.map((post) => (
-      <li key={post.id} style={{ color: post.color }}>
-        <span>{`${post.name} from year ${post.year}`}</span>
+      <li key={post.id}>
+        <span><strong>{post.title}</strong>: {post.body}</span>
       </li>
     ));
   }
