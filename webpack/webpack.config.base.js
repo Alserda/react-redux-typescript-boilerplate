@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const { Config } = require('webpack-config');
 const { join, resolve } = require('path');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const paths = {
@@ -10,6 +9,7 @@ const paths = {
   build: resolve(__dirname, '../dist'),
   publicPath: '/',
 };
+
 
 module.exports = new Config().merge({
   context: paths.source,
