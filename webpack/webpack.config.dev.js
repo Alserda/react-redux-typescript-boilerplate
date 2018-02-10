@@ -8,17 +8,7 @@ const paths = {
   publicPath: '/',
 };
 
-module.exports = new Config().extend({
-  './webpack/webpack.config.base.js': function(config) {
-    // remove the entry to update the entry with hot-loader here
-    delete config.entry;
-
-    // remove the rule for TS to include the react-hot-loader here
-    config.module.rules.shift();
-
-    return config;
-  }
-}).merge({
+module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
@@ -48,6 +38,16 @@ module.exports = new Config().extend({
       {
         test: /\.tsx?$/,
         use: ['react-hot-loader/webpack', 'ts-loader'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ],
+        exclude: /node_modules/
       },
     ]
   },

@@ -13,7 +13,6 @@ const paths = {
 
 module.exports = new Config().merge({
   context: paths.source,
-  entry: 'index.tsx',
 
   resolve: {
     modules: ['src', 'node_modules'],
@@ -21,26 +20,14 @@ module.exports = new Config().merge({
   },
 
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'boilerplate.[hash].js',
+    chunkFilename: 'boilerplate.[name].js',
     path: paths.build,
     publicPath: paths.publicPath,
   },
 
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader'],
-        }),
-        exclude: /node_modules/
-      },
       {
         test: /\.css$/,
         use: [
@@ -50,15 +37,12 @@ module.exports = new Config().merge({
         exclude: /node_modules/
       },
       {
-        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: 'file-loader?name=fonts/[name].[ext]'
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          'file-loader',
-          'image-webpack-loader',
-        ],
+        use: 'image-webpack-loader',
       },
     ],
   },
@@ -69,11 +53,5 @@ module.exports = new Config().merge({
       title: 'TS Boilerplate',
       template: resolve(__dirname, '../public/index.html'),
     }),
-
-    // Extracts the CSS from the JS bundle
-    new ExtractTextPlugin({
-      filename: 'boilerplate.[contenthash].css',
-      allChunks: true,
-    })
   ],
 });
