@@ -42,7 +42,10 @@ module.exports = new Config().merge({
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: 'image-webpack-loader',
+        use: [
+          'file-loader',
+          'image-webpack-loader',
+        ],
       },
     ],
   },
