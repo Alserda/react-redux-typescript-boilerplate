@@ -14,8 +14,7 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        use: 'awesome-typescript-loader',
       },
       {
         test: /\.less$/,
