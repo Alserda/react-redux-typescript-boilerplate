@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   devtool: 'source-map',
+  mode: 'production',
 
   entry: 'index.tsx',
 

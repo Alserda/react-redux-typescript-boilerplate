@@ -12,6 +12,7 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   // Recommended by React, so there won't be 'cross origin errors'
   // See https://reactjs.org/docs/cross-origin-errors.html#source-maps
   devtool: 'cheap-module-source-map',
+  mode: 'development',
 
   entry: [
     'react-hot-loader/patch',
@@ -22,7 +23,7 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
     // enable HMR on the server
     hot: true,
 
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 9000,
 
     // match the output path
