@@ -1,5 +1,5 @@
 import { IPostsState } from './postsReducer';
-import { RequestState } from 'data/request/requestModels';
+import { RequestState } from 'services/networking/requests';
 import { IPost } from 'data/posts/postsModels';
 
 export const setPostsRequested = (state: IPostsState): IPostsState => ({

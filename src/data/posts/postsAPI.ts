@@ -1,4 +1,4 @@
-import API from 'services/API';
+import API from 'services/networking/HTTPClient';
 import { AxiosPromise } from 'axios';
 
 interface IRoutes {

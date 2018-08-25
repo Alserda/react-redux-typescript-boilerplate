@@ -15,6 +15,7 @@
 		"no-var-requires": true,
 		"only-arrow-functions": [true, "allow-declarations"],
 		"prefer-for-of": true,
+		"triple-equals": false,
 		"typedef": [true, "call-signature", "parameter", "member-variable-declaration", "property-declaration"],
 		"typedef-whitespace": [true,
 			{

@@ -1,6 +1,6 @@
 import { IAction, ActionType } from 'data/actions';
 import { IPost } from './postsModels';
-import { RequestState } from 'data/request/requestModels';
+import { RequestState } from 'services/networking/requests';
 import * as postsMutators from './postsMutators';
 
 export interface IPostsState {

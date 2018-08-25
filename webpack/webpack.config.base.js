@@ -14,14 +14,16 @@ const paths = {
 module.exports = new Config().merge({
   context: paths.source,
 
+  entry: 'index.tsx',
+
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['.less', '.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.css', 'scss'],
   },
 
   output: {
-    filename: 'boilerplate.[hash].js',
-    chunkFilename: 'boilerplate.[name].js',
+    filename: 'tsb.[hash].js',
+    chunkFilename: 'tsb.[name].js',
     path: paths.build,
     publicPath: paths.publicPath,
   },
@@ -29,21 +31,12 @@ module.exports = new Config().merge({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader?sourceMap',
-        ],
-        exclude: /node_modules/
-      },
-      {
         test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: 'file-loader?name=fonts/[name].[ext]'
-      },
-      {
+        use: 'file-loader?name=assets/fonts/[name].[ext]'
+      }, {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'file-loader',
+          'file-loader?name=assets/images/[name].[ext]',
           'image-webpack-loader',
         ],
       },
@@ -53,7 +46,7 @@ module.exports = new Config().merge({
   plugins: [
     // Generate minified HTML page from template with all CSS/JS imports.
     new HtmlWebpackPlugin({
-      title: 'TS Boilerplate',
+      title: 'TSB',
       template: resolve(__dirname, '../public/index.html'),
     }),
   ],

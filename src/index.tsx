@@ -2,25 +2,19 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import RootApp from 'scenes/RootApp';
+/* Redux */
 import { store } from './store';
 
+/* Scenes */
+import RootApp from 'scenes/RootApp';
+
 /* DOM element to render the application within */
-const target = document.getElementById('app');
+const target = document.getElementById('root');
 
-/**
- * Renders the main application.
- *
- * @param Component Instance of the RootApp component
- */
-const render = (Component: typeof RootApp): void => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Component />
-    </Provider>,
-    target
-  );
-};
+ReactDOM.render(
+  <Provider store={store}>
+    <RootApp />
+  </Provider>,
+  target
+);
 
-/* Render the application for the first time */
-render(RootApp);

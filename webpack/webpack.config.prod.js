@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 const { Config } = require('webpack-config');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   devtool: 'source-map',
-  mode: 'production',
 
-  entry: 'index.tsx',
+  mode: 'production',
 
   module: {
     rules: [
@@ -17,21 +16,31 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
         use: 'awesome-typescript-loader',
       },
       {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader'],
-        }),
-        exclude: /node_modules/
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
-    ]
+    ],
   },
 
   plugins: [
-    // Extracts the CSS from the JS bundle
-    new ExtractTextPlugin({
-      filename: 'boilerplate.[contenthash].css',
-      allChunks: true,
-    })
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "tsb.[contenthash].css",
+      chunkFilename: "[id].css"
+    }),
+
+    // Probably change this url later
+    new webpack.DefinePlugin({
+      'BACKEND_URL': JSON.stringify('https://jsonplaceholder.typicode.com'),
+    }),
   ]
 });

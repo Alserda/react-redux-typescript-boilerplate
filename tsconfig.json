@@ -17,7 +17,7 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
-        "types": [ "node" ],
+        "types": ["node"],
         "lib": ["es6", "dom"]
     },
     "include": [
@@ -26,5 +26,10 @@
     ],
     "exclude": [
         "node_modules"
-    ]
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "reportFiles": [
+            "./src/**/*"
+        ]
+    }
 }

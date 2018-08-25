@@ -12,18 +12,14 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   // Recommended by React, so there won't be 'cross origin errors'
   // See https://reactjs.org/docs/cross-origin-errors.html#source-maps
   devtool: 'cheap-module-source-map',
-  mode: 'development',
 
-  entry: [
-    'react-hot-loader/patch',
-    'index.tsx'
-  ],
+  mode: 'development',
 
   devServer: {
     // enable HMR on the server
     hot: true,
 
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 9000,
 
     // match the output path
@@ -39,17 +35,21 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: ['babel-loader', 'awesome-typescript-loader'],
-      },
-      {
-        test: /\.less$/,
+        test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader',
-          'less-loader'
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          'postcss-loader',
+          'sass-loader',
         ],
-        exclude: /node_modules/
+      },
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'awesome-typescript-loader'],
+        exclude: /node_modules/,
       },
     ]
   },
@@ -60,5 +60,9 @@ module.exports = new Config().extend('./webpack/webpack.config.base.js').merge({
 
     // prints more readable module names in the browser console on HMR updates
     new webpack.NamedModulesPlugin(),
+
+    new webpack.DefinePlugin({
+      'BACKEND_URL': JSON.stringify('https://jsonplaceholder.typicode.com'),
+    }),
   ],
 });

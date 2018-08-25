@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { IRootState } from 'store';
 import { fetchPosts as fetchPostsAction } from 'data/posts/postsActions';
-import { RequestState } from 'data/request/requestModels';
+import { RequestState } from 'services/networking/requests';
 import { IPost } from 'data/posts/postsModels';
 
 

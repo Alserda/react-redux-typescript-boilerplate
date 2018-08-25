@@ -1,14 +1,13 @@
-import { IPureAction, ActionType, IAction } from 'data/actions';
+import { ActionType, IAction } from 'data/actions';
 import { takeEvery } from 'redux-saga/effects';
+
 import * as postsSagas from './posts/postsSagas';
 
 /**
- * takeEvery by redux-saga does not allow enum types. This function
- * takes a dispatched action and checks if its action type is similar
- * to the one provided. If it is, the saga continues.
- * 
+ * redux-saga doesn't support enum values by default,
+ * so we're changing it to a boolean instead.
  *
- * @param {ActionType} type  Enum ActionType to react to.
+ * @param type ActionType to check for.
  */
 const patternMap = (type: ActionType) => (action: IAction<any>): boolean => (
   action.type === type
