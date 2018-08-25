@@ -6,6 +6,7 @@ import { IRootState } from 'store';
 import { fetchPosts as fetchPostsAction } from 'data/posts/postsActions';
 import { RequestState } from 'services/networking/requests';
 import { IPost } from 'data/posts/postsModels';
+import { IAction } from 'data/actions';
 
 
 interface IStateFromProps {
@@ -46,7 +47,7 @@ const mapStateToProps = (state: IRootState): IStateFromProps => ({
   posts: state.posts.posts,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IRootState>): IDispatchToProps => (
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => (
   bindActionCreators({ fetchPosts: fetchPostsAction }, dispatch)
 );
 
